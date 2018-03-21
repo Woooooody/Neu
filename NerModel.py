@@ -1,37 +1,48 @@
-
-from .nn.op import lookup, LSTMlayer, CRFlayer
+from .nn.op import lookup, LSTMlayer, CRFlayer, concat, Linear
 from .util import ner_parameters
 import numpy as np
 
-
 class NerModel:
     def __init__(self):
-        self.paras = ner_parameters("path")
-        self.embedding = self.paras['embeding']
+        self.paras = ner_parameters("Neu/model/ner.model")
+        self.embedding = self.paras['embeddings']
         self.word2id = self.paras["word2id"]
         self.id2tag = self.paras["id2tag"]
-        self.Wi = np.array(self.paras["Wi"])
-        self.bi = np.array(self.paras["bi"])
-        self.Wf = np.array(self.paras["Wf"])
-        self.bf = np.array(self.paras["bf"])
-        self.Wu = np.array(self.paras["Wu"])
-        self.bu = np.array(self.paras["bu"])
-        self.Wo = np.array(self.paras["Wo"])
-        self.bo = np.array(self.paras["bo"])
-        self.W_tag = np.array(self.paras["W_tag"])
+        self.fWi = np.array(self.paras["fWi"]).reshape((100,200))
+        self.fbi = np.array(self.paras["fbi"]).reshape((100))
+        self.fWf = np.array(self.paras["fWf"]).reshape((100,200))
+        self.fbf = np.array(self.paras["fbf"]).reshape((100))
+        self.fWu = np.array(self.paras["fWu"]).reshape((100,200))
+        self.fbu = np.array(self.paras["fbu"]).reshape((100))
+        self.fWo = np.array(self.paras["fWo"]).reshape((100,200))
+        self.fbo = np.array(self.paras["fbo"]).reshape((100))
+        self.bWi = np.array(self.paras["bWi"]).reshape((100,200))
+        self.bbi = np.array(self.paras["bbi"]).reshape((100))
+        self.bWf = np.array(self.paras["bWf"]).reshape((100,200))
+        self.bbf = np.array(self.paras["bbf"]).reshape((100))
+        self.bWu = np.array(self.paras["bWu"]).reshape((100,200))
+        self.bbu = np.array(self.paras["bbu"]).reshape((100))
+        self.bWo = np.array(self.paras["bWo"]).reshape((100,200))
+        self.bbo = np.array(self.paras["bbo"]).reshape((100))
+        self.W_tag = np.array(self.paras["W_tag"]).reshape((200, 7))
+        self.b_tag = np.array(self.paras["b_tag"]).reshape((7))
         self.trans = np.array(self.paras["transitions"])
 
     def ner(self, word_list):
         ids = [self.word2id[word] for word in word_list]
+
         emb = lookup(self.embedding, ids)   # (n, 100)
-        foward = LSTMlayer(emb, self.Wi, self.bi, self.Wf, self.bf, self.Wu, self.bu, self.Wo, self.bo)
-        backward = LSTMlayer(emb.reverse(), self.Wi, self.bi, self.Wf, self.bf, self.Wu, self.bu, self.Wo, self.bo)
-        backward.reverse()
-        top_recur = foward.extend(backward)
-        tag_score = np.dot(np.array(top_recur), self.W_tag)
-        # tag_score = np.array([[0.8,0.1,0.1],[0.8,0.1,0.1],[0.1,0.8,0.1],[0.1,0.1,0.8]])
-        # self.trans = np.array([[0.4,0.5,0.1],[0.3,0.4,0.3],[0.5,0.1,0.4]])
+        forward = LSTMlayer(emb, self.fWi, self.fbi, self.fWf, self.fbf, self.fWu, self.fbu, self.fWo, self.fbo)
+        # print(forward)
+
+        emb.reverse()
+        backward = LSTMlayer(emb, self.bWi, self.bbi, self.bWf, self.bbf, self.bWu, self.bbu, self.bWo, self.bbo)
+        backward = np.flip(backward, 0)
+        top_recur = concat(forward, backward, axis=1)
+        tag_score = Linear(top_recur, self.W_tag, self.b_tag)
+        # print(tag_score)
         tag_ids = CRFlayer(tag_score, self.trans)
         tag_list = [self.id2tag[id] for id in tag_ids]
+        # print(tag_list)
 
         return tag_list

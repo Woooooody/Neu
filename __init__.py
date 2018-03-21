@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .SegModel import SegModel
 from .PosModel import PosModel
 from .NerModel import NerModel
