@@ -1,4 +1,4 @@
-from .nn.op import lookup, LSTMlayer, CRFlayer, concat, Linear
+from .nn.op import lookup, LSTMlayer, CRFlayer, concat, Linear, LSTMcell, LSTMparam, LSTMstate
 from .util import ner_parameters
 import numpy as np
 
@@ -38,6 +38,7 @@ class NerModel:
         emb.reverse()
         backward = LSTMlayer(emb, self.bWi, self.bbi, self.bWf, self.bbf, self.bWu, self.bbu, self.bWo, self.bbo)
         backward = np.flip(backward, 0)
+        # print(backward)
         top_recur = concat(forward, backward, axis=1)
         tag_score = Linear(top_recur, self.W_tag, self.b_tag)
         # print(tag_score)
