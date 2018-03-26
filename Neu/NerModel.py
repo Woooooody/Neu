@@ -5,10 +5,12 @@ import pickle
 import os
 
 class NerModel:
-    def __init__(self):
+    def __init__(self, model_path):
         # self.paras = ner_parameters(os.getcwd()+"/Neu/model/ner.model")
         # paras = pickle.dump(self.paras, open('ner.model', 'wb'))
-        self.paras = pickle.load(open('Neu/model/ner.model', 'rb'))
+        # dir_path = os.path.dirname(os.path.abspath(__file__))
+        # model_path = os.path.join(dir_path, 'model/ner.model')
+        self.paras = pickle.load(open(model_path, 'rb'))
         self.embedding = self.paras['embeddings']
         self.word2id = self.paras["word2id"]
         self.id2tag = self.paras["id2tag"]

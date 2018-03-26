@@ -1,16 +1,16 @@
 from .nn.op import HMMlayer
 import pickle
-import re, os
+import re, sys, os
 
 class SegModel():
-    def __init__(self):
-        model = open(os.getcwd()+"/Neu/model/seg.model", 'rb')
-        self.word_dict = pickle.load(open("Neu/model/word_dict", 'rb'))
+    def __init__(self, model_path):
+        model = open(model_path, 'rb')
         self.transitionProb = pickle.load(model)
         self.emissionProb = pickle.load(model)
         self.word_list = pickle.load(model)
         self.pi = pickle.load(model)
         self.states = pickle.load(model)
+        self.word_dict = pickle.load(model)
 
     def catchStr(self, sentence):
         l=[]

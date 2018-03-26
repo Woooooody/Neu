@@ -2,8 +2,8 @@ import numpy as np
 
 
 def lookup(word_list, vocab, word2id):
-    # ids = [word2id[word] if word in word2id else word2id['UNK'] for word in word_list]
-    ids = [word2id[word] for word in word_list]
+    ids = [word2id[word] if word in word2id else word2id['$UNK$'] for word in word_list]
+    # ids = [word2id[word] for word in word_list]
     emb = []
     for i in ids:
         emb.append(vocab[i])
