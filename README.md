@@ -12,7 +12,9 @@ Neu初步预计有四个模块,分别是分词,词性标注,实体识别,句法�
 有任何问题可联系wujinhang0729@163.com, huxiao1318@163.com
 
 
-用法请参考:
-import Neu
-Neu.help()
+安装:
+1, pip3 install Neu (目前只支持python3)
+2, git clone https://github.com/Woooooody/Neu (解压后放在python的site package目录)
+
+用法:
 ![help](https://github.com/Woooooody/Neu/blob/master/images/help.png)
