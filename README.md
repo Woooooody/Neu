@@ -29,13 +29,11 @@ Useage
 License
 =======
 
-
-
-  					 			    Neu SDK   					                    
+  			Neu SDK   					                    
 					                                                                
- 				Copyright (c) 2017-2018 NiuParser All rights reserved.              
+ Copyright (c) 2017-2018 NiuParser All rights reserved.              
                                                                                    
-  				                 www.nlplab.com        
+  			www.nlplab.com        
 
 
 Authors and Contributors
@@ -47,6 +45,6 @@ Method
 =======
 
 For word segment we use the maximum forward match algorithm and HMM(Hidden Markov Model)
-Using viterbi algorithm to caculate the maximum rotate.
+Using viterbi algorithm to calculate the maximum rotate.
 
 For sequence label model, we use the character level inputs for  LSTM(Long Short Time Memory) and CRF(Conditional Random Field) model .
