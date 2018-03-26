@@ -1,4 +1,6 @@
-# Neu
+===
+Neu
+===
 中文自然语言处理工具包--东北大学自然语言处理实验室(http://www.nlplab.com)
 
 Neu是东北大学自然语言处理实验室在2014开发的NiuParser的Python版本.
@@ -12,11 +14,42 @@ Neu初步预计有四个模块,分别是分词,词性标注,实体识别,句法�
 有任何问题可联系wujinhang0729@163.com, huxiao1318@163.com
 
 
-安装:
+Installation
+============
 
-1, pip3 install Neu (目前只支持python3)
+Using ``pip``::
 
-2, git clone https://github.com/Woooooody/Neu (解压后放在python的site package目录)
+    pip3 install Neu (目前只支持Python3)
 
-用法:
+Using ``git``::
+
+    clone https://github.com/Woooooody/Neu (解压后放在python的site package目录)
+
+Useage
+======
+
 ![help](https://github.com/Woooooody/Neu/blob/master/images/help.png)
+
+License
+=======
+
+*************************************************************************************
+*  					 			    Neu SDK   					                    *
+*					                                                                *
+* 				Copyright (c) 2017-2018 NiuParser All rights reserved.              *
+*                                                                                   *
+*  				                 www.nlplab.com                                     *
+*************************************************************************************
+
+Authors and Contributors
+========================
+
+Original authors are Wu Jinhang <wujinhang0729@gmail.com> and Huxiao <https://github.com/huxiao>. 
+
+Method
+=======
+
+For word segment we use the maximum forward match algorithm and HMM(Hidden Markov Model)
+Using viterbi algorithm to caculate the maximum rotate.
+
+For sequence label model, we use the character level inputs for  LSTM(Long Short Time Memory) and CRF(Conditional Random Field) model .
