@@ -1,0 +1,34 @@
+Metadata-Version: 1.1
+Name: Neu
+Version: 1.3
+Summary: 中文自然语言处理工具包
+Home-page: https://github.com/Woooooody/Neu
+Author: UNKNOWN
+Author-email: wujinhang0729@gmail.com
+License: BSD License
+Description: # Neu
+        中文自然语言处理工具包--东北大学自然语言处理实验室(http://www.nlplab.com)
+        
+        Neu是东北大学自然语言处理实验室在2014开发的NiuParser的Python版本.
+        
+        NiuParser(http://www.niuparser.com), NiuParser支持所有的中文自然语言处理底层技术.
+        
+        Neu初步预计有四个模块,分别是分词,词性标注,实体识别,句法分析.
+        
+        安装方便,可直接pip安装,不依赖于繁多的包,敬请期待.!
+        
+        有任何问题可联系wujinhang0729@163.com, huxiao1318@163.com
+        
+Keywords: NLP,tokenizing,Chinese word segementation
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: Implementation
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Topic :: Software Development :: Libraries
