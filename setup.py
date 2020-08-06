@@ -7,7 +7,7 @@ setup(
     name='Neu',
     version='1.3',
     description='中文自然语言处理工具包',
-    long_description=open('README.rst').read(),
+    long_description=open('README.rst',encoding='utf-8').read(),
     autuor='wujinhang, huxiao',
     author_email='wujinhang0729@gmail.com',
     license='BSD License',
@@ -24,6 +24,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Libraries'
     ],
     keywords='NLP,tokenizing,Chinese word segementation',
